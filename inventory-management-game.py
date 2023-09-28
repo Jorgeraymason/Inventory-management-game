@@ -1,5 +1,3 @@
-import itertools
-
 list1 = ["SHOP to enter shop", "EXIT to end program", "INV to view/edit inventory"]
 
 list2 = ["Wood", "Steel", "Bricks", "Clay"]
@@ -21,10 +19,11 @@ def editInventory():
     if userInput == "EDIT":
         print(userInventory)
         removeFromInv = input("Select an item to remove from inventory: ")
-        userInventory.remove(removeFromInv)
-        print("Item removed.")
-        if removeFromInv not in userInventory: 
-            print("Item not in inventory.")
+        try:
+            userInventory.remove(removeFromInv)
+            print("Item removed")
+        except ValueError:
+            print("Item not in inventory")
     elif userInput == "BACK":
         print("Returning to main screen")
 
@@ -39,7 +38,7 @@ def takeFromShop():
 
 startGame()
 
-for i in itertools.count():
+while True:
     userInput = input("What would you like to do next? ")
     print(commandList)
     if userInput == "SHOP": 
